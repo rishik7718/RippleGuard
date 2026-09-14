@@ -1,0 +1,30 @@
+{
+    "application": "DemoApplication",
+    "dependencies": {
+        "DemoApplication": [
+            "Express",
+            "Multer",
+            "AuthLib"
+        ],
+        "Express": [
+            "Router",
+            "Parser"
+        ],
+        "Router": [
+            "CoreLib"
+        ],
+        "Parser": [
+            "CoreLib"
+        ],
+        "Multer": [
+            "FileLib"
+        ],
+        "FileLib": [
+            "CoreLib"
+        ],
+        "AuthLib": [
+            "CryptoLib"
+        ],
+        "CryptoLib": []
+    }
+}

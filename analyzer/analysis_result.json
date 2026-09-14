@@ -1,0 +1,828 @@
+{
+    "application": "RippleGuard-TestProject",
+    "total_components": 84,
+    "critical_dependencies": [
+        {
+            "dependency": "node_modules/es-errors",
+            "downstream_reach": 14,
+            "priority": "HIGH"
+        },
+        {
+            "dependency": "node_modules/function-bind",
+            "downstream_reach": 13,
+            "priority": "HIGH"
+        },
+        {
+            "dependency": "node_modules/call-bind-apply-helpers",
+            "downstream_reach": 11,
+            "priority": "HIGH"
+        },
+        {
+            "dependency": "node_modules/gopd",
+            "downstream_reach": 11,
+            "priority": "HIGH"
+        },
+        {
+            "dependency": "node_modules/mime-db",
+            "downstream_reach": 11,
+            "priority": "HIGH"
+        },
+        {
+            "dependency": "node_modules/inherits",
+            "downstream_reach": 10,
+            "priority": "HIGH"
+        },
+        {
+            "dependency": "node_modules/dunder-proto",
+            "downstream_reach": 10,
+            "priority": "HIGH"
+        },
+        {
+            "dependency": "node_modules/es-object-atoms",
+            "downstream_reach": 10,
+            "priority": "HIGH"
+        },
+        {
+            "dependency": "node_modules/mime-types",
+            "downstream_reach": 9,
+            "priority": "HIGH"
+        },
+        {
+            "dependency": "node_modules/es-define-property",
+            "downstream_reach": 9,
+            "priority": "HIGH"
+        },
+        {
+            "dependency": "node_modules/get-proto",
+            "downstream_reach": 9,
+            "priority": "HIGH"
+        },
+        {
+            "dependency": "node_modules/has-symbols",
+            "downstream_reach": 9,
+            "priority": "HIGH"
+        },
+        {
+            "dependency": "node_modules/hasown",
+            "downstream_reach": 9,
+            "priority": "HIGH"
+        },
+        {
+            "dependency": "node_modules/math-intrinsics",
+            "downstream_reach": 9,
+            "priority": "HIGH"
+        },
+        {
+            "dependency": "node_modules/get-intrinsic",
+            "downstream_reach": 8,
+            "priority": "HIGH"
+        },
+        {
+            "dependency": "node_modules/ms",
+            "downstream_reach": 8,
+            "priority": "HIGH"
+        },
+        {
+            "dependency": "node_modules/depd",
+            "downstream_reach": 8,
+            "priority": "HIGH"
+        },
+        {
+            "dependency": "node_modules/statuses",
+            "downstream_reach": 8,
+            "priority": "HIGH"
+        },
+        {
+            "dependency": "node_modules/object-inspect",
+            "downstream_reach": 8,
+            "priority": "HIGH"
+        },
+        {
+            "dependency": "node_modules/debug",
+            "downstream_reach": 7,
+            "priority": "HIGH"
+        },
+        {
+            "dependency": "node_modules/call-bound",
+            "downstream_reach": 7,
+            "priority": "HIGH"
+        },
+        {
+            "dependency": "node_modules/ee-first",
+            "downstream_reach": 7,
+            "priority": "HIGH"
+        },
+        {
+            "dependency": "node_modules/setprototypeof",
+            "downstream_reach": 7,
+            "priority": "HIGH"
+        },
+        {
+            "dependency": "node_modules/toidentifier",
+            "downstream_reach": 7,
+            "priority": "HIGH"
+        },
+        {
+            "dependency": "node_modules/http-errors",
+            "downstream_reach": 6,
+            "priority": "HIGH"
+        },
+        {
+            "dependency": "node_modules/on-finished",
+            "downstream_reach": 6,
+            "priority": "HIGH"
+        },
+        {
+            "dependency": "node_modules/media-typer",
+            "downstream_reach": 6,
+            "priority": "HIGH"
+        },
+        {
+            "dependency": "node_modules/side-channel-map",
+            "downstream_reach": 6,
+            "priority": "HIGH"
+        },
+        {
+            "dependency": "node_modules/encodeurl",
+            "downstream_reach": 5,
+            "priority": "HIGH"
+        },
+        {
+            "dependency": "node_modules/escape-html",
+            "downstream_reach": 5,
+            "priority": "HIGH"
+        },
+        {
+            "dependency": "node_modules/parseurl",
+            "downstream_reach": 5,
+            "priority": "HIGH"
+        },
+        {
+            "dependency": "node_modules/safer-buffer",
+            "downstream_reach": 5,
+            "priority": "HIGH"
+        },
+        {
+            "dependency": "node_modules/safe-buffer",
+            "downstream_reach": 5,
+            "priority": "HIGH"
+        },
+        {
+            "dependency": "node_modules/side-channel-list",
+            "downstream_reach": 5,
+            "priority": "HIGH"
+        },
+        {
+            "dependency": "node_modules/side-channel-weakmap",
+            "downstream_reach": 5,
+            "priority": "HIGH"
+        },
+        {
+            "dependency": "node_modules/bytes",
+            "downstream_reach": 4,
+            "priority": "MEDIUM"
+        },
+        {
+            "dependency": "node_modules/iconv-lite",
+            "downstream_reach": 4,
+            "priority": "MEDIUM"
+        },
+        {
+            "dependency": "node_modules/etag",
+            "downstream_reach": 4,
+            "priority": "MEDIUM"
+        },
+        {
+            "dependency": "node_modules/fresh",
+            "downstream_reach": 4,
+            "priority": "MEDIUM"
+        },
+        {
+            "dependency": "node_modules/range-parser",
+            "downstream_reach": 4,
+            "priority": "MEDIUM"
+        },
+        {
+            "dependency": "node_modules/negotiator/node_modules/content-type",
+            "downstream_reach": 4,
+            "priority": "MEDIUM"
+        },
+        {
+            "dependency": "node_modules/side-channel",
+            "downstream_reach": 4,
+            "priority": "MEDIUM"
+        },
+        {
+            "dependency": "node_modules/unpipe",
+            "downstream_reach": 4,
+            "priority": "MEDIUM"
+        },
+        {
+            "dependency": "node_modules/string_decoder",
+            "downstream_reach": 4,
+            "priority": "MEDIUM"
+        },
+        {
+            "dependency": "node_modules/util-deprecate",
+            "downstream_reach": 4,
+            "priority": "MEDIUM"
+        },
+        {
+            "dependency": "node_modules/type-is/node_modules/content-type",
+            "downstream_reach": 4,
+            "priority": "MEDIUM"
+        },
+        {
+            "dependency": "node_modules/negotiator",
+            "downstream_reach": 3,
+            "priority": "MEDIUM"
+        },
+        {
+            "dependency": "node_modules/body-parser/node_modules/content-type",
+            "downstream_reach": 3,
+            "priority": "MEDIUM"
+        },
+        {
+            "dependency": "node_modules/qs",
+            "downstream_reach": 3,
+            "priority": "MEDIUM"
+        },
+        {
+            "dependency": "node_modules/raw-body",
+            "downstream_reach": 3,
+            "priority": "MEDIUM"
+        },
+        {
+            "dependency": "node_modules/type-is",
+            "downstream_reach": 3,
+            "priority": "MEDIUM"
+        },
+        {
+            "dependency": "node_modules/buffer-from",
+            "downstream_reach": 3,
+            "priority": "MEDIUM"
+        },
+        {
+            "dependency": "node_modules/streamsearch",
+            "downstream_reach": 3,
+            "priority": "MEDIUM"
+        },
+        {
+            "dependency": "node_modules/readable-stream",
+            "downstream_reach": 3,
+            "priority": "MEDIUM"
+        },
+        {
+            "dependency": "node_modules/typedarray",
+            "downstream_reach": 3,
+            "priority": "MEDIUM"
+        },
+        {
+            "dependency": "node_modules/send",
+            "downstream_reach": 3,
+            "priority": "MEDIUM"
+        },
+        {
+            "dependency": "node_modules/forwarded",
+            "downstream_reach": 3,
+            "priority": "MEDIUM"
+        },
+        {
+            "dependency": "node_modules/ipaddr.js",
+            "downstream_reach": 3,
+            "priority": "MEDIUM"
+        },
+        {
+            "dependency": "node_modules/is-promise",
+            "downstream_reach": 3,
+            "priority": "MEDIUM"
+        },
+        {
+            "dependency": "node_modules/wrappy",
+            "downstream_reach": 3,
+            "priority": "MEDIUM"
+        },
+        {
+            "dependency": "node_modules/path-to-regexp",
+            "downstream_reach": 3,
+            "priority": "MEDIUM"
+        },
+        {
+            "dependency": "node_modules/accepts",
+            "downstream_reach": 2,
+            "priority": "MEDIUM"
+        },
+        {
+            "dependency": "node_modules/append-field",
+            "downstream_reach": 2,
+            "priority": "MEDIUM"
+        },
+        {
+            "dependency": "node_modules/body-parser",
+            "downstream_reach": 2,
+            "priority": "MEDIUM"
+        },
+        {
+            "dependency": "node_modules/busboy",
+            "downstream_reach": 2,
+            "priority": "MEDIUM"
+        },
+        {
+            "dependency": "node_modules/concat-stream",
+            "downstream_reach": 2,
+            "priority": "MEDIUM"
+        },
+        {
+            "dependency": "node_modules/content-disposition",
+            "downstream_reach": 2,
+            "priority": "MEDIUM"
+        },
+        {
+            "dependency": "node_modules/content-type",
+            "downstream_reach": 2,
+            "priority": "MEDIUM"
+        },
+        {
+            "dependency": "node_modules/cookie",
+            "downstream_reach": 2,
+            "priority": "MEDIUM"
+        },
+        {
+            "dependency": "node_modules/cookie-signature",
+            "downstream_reach": 2,
+            "priority": "MEDIUM"
+        },
+        {
+            "dependency": "node_modules/finalhandler",
+            "downstream_reach": 2,
+            "priority": "MEDIUM"
+        },
+        {
+            "dependency": "node_modules/merge-descriptors",
+            "downstream_reach": 2,
+            "priority": "MEDIUM"
+        },
+        {
+            "dependency": "node_modules/once",
+            "downstream_reach": 2,
+            "priority": "MEDIUM"
+        },
+        {
+            "dependency": "node_modules/proxy-addr",
+            "downstream_reach": 2,
+            "priority": "MEDIUM"
+        },
+        {
+            "dependency": "node_modules/router",
+            "downstream_reach": 2,
+            "priority": "MEDIUM"
+        },
+        {
+            "dependency": "node_modules/serve-static",
+            "downstream_reach": 2,
+            "priority": "MEDIUM"
+        },
+        {
+            "dependency": "node_modules/vary",
+            "downstream_reach": 2,
+            "priority": "MEDIUM"
+        },
+        {
+            "dependency": "node_modules/multer/node_modules/type-is",
+            "downstream_reach": 2,
+            "priority": "MEDIUM"
+        },
+        {
+            "dependency": "node_modules/express",
+            "downstream_reach": 1,
+            "priority": "LOW"
+        },
+        {
+            "dependency": "node_modules/multer",
+            "downstream_reach": 1,
+            "priority": "LOW"
+        },
+        {
+            "dependency": "RippleGuard-TestProject",
+            "downstream_reach": 0,
+            "priority": "LOW"
+        },
+        {
+            "dependency": "node_modules/multer/node_modules/media-typer",
+            "downstream_reach": 0,
+            "priority": "LOW"
+        },
+        {
+            "dependency": "node_modules/multer/node_modules/mime-db",
+            "downstream_reach": 0,
+            "priority": "LOW"
+        },
+        {
+            "dependency": "node_modules/multer/node_modules/mime-types",
+            "downstream_reach": 0,
+            "priority": "LOW"
+        }
+    ],
+    "simulated_dependency": "node_modules/es-errors",
+    "affected_components": [
+        "node_modules/call-bind-apply-helpers",
+        "node_modules/dunder-proto",
+        "node_modules/es-object-atoms",
+        "node_modules/get-intrinsic",
+        "node_modules/side-channel",
+        "node_modules/side-channel-list",
+        "node_modules/side-channel-map",
+        "node_modules/side-channel-weakmap",
+        "node_modules/call-bound",
+        "node_modules/get-proto",
+        "node_modules/qs",
+        "node_modules/body-parser",
+        "node_modules/express",
+        "RippleGuard-TestProject"
+    ],
+    "downstream_reach": 14,
+    "propagation_paths": [
+        [
+            "node_modules/es-errors",
+            "node_modules/side-channel",
+            "node_modules/qs",
+            "node_modules/express",
+            "RippleGuard-TestProject"
+        ],
+        [
+            "node_modules/es-errors",
+            "node_modules/side-channel",
+            "node_modules/qs",
+            "node_modules/body-parser",
+            "node_modules/express",
+            "RippleGuard-TestProject"
+        ],
+        [
+            "node_modules/es-errors",
+            "node_modules/side-channel-list",
+            "node_modules/side-channel",
+            "node_modules/qs",
+            "node_modules/express",
+            "RippleGuard-TestProject"
+        ],
+        [
+            "node_modules/es-errors",
+            "node_modules/side-channel-map",
+            "node_modules/side-channel",
+            "node_modules/qs",
+            "node_modules/express",
+            "RippleGuard-TestProject"
+        ],
+        [
+            "node_modules/es-errors",
+            "node_modules/side-channel-weakmap",
+            "node_modules/side-channel",
+            "node_modules/qs",
+            "node_modules/express",
+            "RippleGuard-TestProject"
+        ]
+    ],
+    "total_propagation_paths": 5,
+    "risk_score": 190,
+    "risk_priority": "HIGH",
+    "mitigation_ranking": [
+        {
+            "dependency": "node_modules/es-errors",
+            "exposure_reduction": 14
+        },
+        {
+            "dependency": "node_modules/function-bind",
+            "exposure_reduction": 13
+        },
+        {
+            "dependency": "node_modules/call-bind-apply-helpers",
+            "exposure_reduction": 11
+        },
+        {
+            "dependency": "node_modules/gopd",
+            "exposure_reduction": 11
+        },
+        {
+            "dependency": "node_modules/mime-db",
+            "exposure_reduction": 11
+        },
+        {
+            "dependency": "node_modules/inherits",
+            "exposure_reduction": 10
+        },
+        {
+            "dependency": "node_modules/dunder-proto",
+            "exposure_reduction": 10
+        },
+        {
+            "dependency": "node_modules/es-object-atoms",
+            "exposure_reduction": 10
+        },
+        {
+            "dependency": "node_modules/mime-types",
+            "exposure_reduction": 9
+        },
+        {
+            "dependency": "node_modules/es-define-property",
+            "exposure_reduction": 9
+        },
+        {
+            "dependency": "node_modules/get-proto",
+            "exposure_reduction": 9
+        },
+        {
+            "dependency": "node_modules/has-symbols",
+            "exposure_reduction": 9
+        },
+        {
+            "dependency": "node_modules/hasown",
+            "exposure_reduction": 9
+        },
+        {
+            "dependency": "node_modules/math-intrinsics",
+            "exposure_reduction": 9
+        },
+        {
+            "dependency": "node_modules/get-intrinsic",
+            "exposure_reduction": 8
+        },
+        {
+            "dependency": "node_modules/ms",
+            "exposure_reduction": 8
+        },
+        {
+            "dependency": "node_modules/depd",
+            "exposure_reduction": 8
+        },
+        {
+            "dependency": "node_modules/statuses",
+            "exposure_reduction": 8
+        },
+        {
+            "dependency": "node_modules/object-inspect",
+            "exposure_reduction": 8
+        },
+        {
+            "dependency": "node_modules/debug",
+            "exposure_reduction": 7
+        },
+        {
+            "dependency": "node_modules/call-bound",
+            "exposure_reduction": 7
+        },
+        {
+            "dependency": "node_modules/ee-first",
+            "exposure_reduction": 7
+        },
+        {
+            "dependency": "node_modules/setprototypeof",
+            "exposure_reduction": 7
+        },
+        {
+            "dependency": "node_modules/toidentifier",
+            "exposure_reduction": 7
+        },
+        {
+            "dependency": "node_modules/http-errors",
+            "exposure_reduction": 6
+        },
+        {
+            "dependency": "node_modules/on-finished",
+            "exposure_reduction": 6
+        },
+        {
+            "dependency": "node_modules/media-typer",
+            "exposure_reduction": 6
+        },
+        {
+            "dependency": "node_modules/side-channel-map",
+            "exposure_reduction": 6
+        },
+        {
+            "dependency": "node_modules/encodeurl",
+            "exposure_reduction": 5
+        },
+        {
+            "dependency": "node_modules/escape-html",
+            "exposure_reduction": 5
+        },
+        {
+            "dependency": "node_modules/parseurl",
+            "exposure_reduction": 5
+        },
+        {
+            "dependency": "node_modules/safer-buffer",
+            "exposure_reduction": 5
+        },
+        {
+            "dependency": "node_modules/safe-buffer",
+            "exposure_reduction": 5
+        },
+        {
+            "dependency": "node_modules/side-channel-list",
+            "exposure_reduction": 5
+        },
+        {
+            "dependency": "node_modules/side-channel-weakmap",
+            "exposure_reduction": 5
+        },
+        {
+            "dependency": "node_modules/bytes",
+            "exposure_reduction": 4
+        },
+        {
+            "dependency": "node_modules/iconv-lite",
+            "exposure_reduction": 4
+        },
+        {
+            "dependency": "node_modules/etag",
+            "exposure_reduction": 4
+        },
+        {
+            "dependency": "node_modules/fresh",
+            "exposure_reduction": 4
+        },
+        {
+            "dependency": "node_modules/range-parser",
+            "exposure_reduction": 4
+        },
+        {
+            "dependency": "node_modules/negotiator/node_modules/content-type",
+            "exposure_reduction": 4
+        },
+        {
+            "dependency": "node_modules/side-channel",
+            "exposure_reduction": 4
+        },
+        {
+            "dependency": "node_modules/unpipe",
+            "exposure_reduction": 4
+        },
+        {
+            "dependency": "node_modules/string_decoder",
+            "exposure_reduction": 4
+        },
+        {
+            "dependency": "node_modules/util-deprecate",
+            "exposure_reduction": 4
+        },
+        {
+            "dependency": "node_modules/type-is/node_modules/content-type",
+            "exposure_reduction": 4
+        },
+        {
+            "dependency": "node_modules/negotiator",
+            "exposure_reduction": 3
+        },
+        {
+            "dependency": "node_modules/body-parser/node_modules/content-type",
+            "exposure_reduction": 3
+        },
+        {
+            "dependency": "node_modules/qs",
+            "exposure_reduction": 3
+        },
+        {
+            "dependency": "node_modules/raw-body",
+            "exposure_reduction": 3
+        },
+        {
+            "dependency": "node_modules/type-is",
+            "exposure_reduction": 3
+        },
+        {
+            "dependency": "node_modules/buffer-from",
+            "exposure_reduction": 3
+        },
+        {
+            "dependency": "node_modules/streamsearch",
+            "exposure_reduction": 3
+        },
+        {
+            "dependency": "node_modules/readable-stream",
+            "exposure_reduction": 3
+        },
+        {
+            "dependency": "node_modules/typedarray",
+            "exposure_reduction": 3
+        },
+        {
+            "dependency": "node_modules/send",
+            "exposure_reduction": 3
+        },
+        {
+            "dependency": "node_modules/forwarded",
+            "exposure_reduction": 3
+        },
+        {
+            "dependency": "node_modules/ipaddr.js",
+            "exposure_reduction": 3
+        },
+        {
+            "dependency": "node_modules/is-promise",
+            "exposure_reduction": 3
+        },
+        {
+            "dependency": "node_modules/wrappy",
+            "exposure_reduction": 3
+        },
+        {
+            "dependency": "node_modules/path-to-regexp",
+            "exposure_reduction": 3
+        },
+        {
+            "dependency": "node_modules/accepts",
+            "exposure_reduction": 2
+        },
+        {
+            "dependency": "node_modules/append-field",
+            "exposure_reduction": 2
+        },
+        {
+            "dependency": "node_modules/body-parser",
+            "exposure_reduction": 2
+        },
+        {
+            "dependency": "node_modules/busboy",
+            "exposure_reduction": 2
+        },
+        {
+            "dependency": "node_modules/concat-stream",
+            "exposure_reduction": 2
+        },
+        {
+            "dependency": "node_modules/content-disposition",
+            "exposure_reduction": 2
+        },
+        {
+            "dependency": "node_modules/content-type",
+            "exposure_reduction": 2
+        },
+        {
+            "dependency": "node_modules/cookie",
+            "exposure_reduction": 2
+        },
+        {
+            "dependency": "node_modules/cookie-signature",
+            "exposure_reduction": 2
+        },
+        {
+            "dependency": "node_modules/finalhandler",
+            "exposure_reduction": 2
+        },
+        {
+            "dependency": "node_modules/merge-descriptors",
+            "exposure_reduction": 2
+        },
+        {
+            "dependency": "node_modules/once",
+            "exposure_reduction": 2
+        },
+        {
+            "dependency": "node_modules/proxy-addr",
+            "exposure_reduction": 2
+        },
+        {
+            "dependency": "node_modules/router",
+            "exposure_reduction": 2
+        },
+        {
+            "dependency": "node_modules/serve-static",
+            "exposure_reduction": 2
+        },
+        {
+            "dependency": "node_modules/vary",
+            "exposure_reduction": 2
+        },
+        {
+            "dependency": "node_modules/multer/node_modules/type-is",
+            "exposure_reduction": 2
+        },
+        {
+            "dependency": "node_modules/express",
+            "exposure_reduction": 1
+        },
+        {
+            "dependency": "node_modules/multer",
+            "exposure_reduction": 1
+        },
+        {
+            "dependency": "RippleGuard-TestProject",
+            "exposure_reduction": 0
+        },
+        {
+            "dependency": "node_modules/multer/node_modules/media-typer",
+            "exposure_reduction": 0
+        },
+        {
+            "dependency": "node_modules/multer/node_modules/mime-db",
+            "exposure_reduction": 0
+        },
+        {
+            "dependency": "node_modules/multer/node_modules/mime-types",
+            "exposure_reduction": 0
+        }
+    ],
+    "recommended_intervention": "node_modules/es-errors",
+    "potential_exposure_reduction": 14
+}
