@@ -539,48 +539,24 @@ def main(file_path=None):
     # --------------------------------
 
     analysis_result = {
+    "application": application,
+    "total_components": len(dependencies),
 
-        "application":
-            application,
+    "graph_nodes": list(dependencies.keys()),
 
-        "total_components":
-            len(dependencies),
+    "graph_edges": [
+        {
+            "source": dependency,
+            "target": child
+        }
+        for dependency, children in dependencies.items()
+        for child in children
+    ],
 
-        "critical_dependencies":
-            results,
-
-        "simulated_dependency":
-            target,
-
-        "affected_components":
-            affected,
-
-        "downstream_reach":
-            len(affected),
-
-        "propagation_paths":
-            paths,
-
-        "total_propagation_paths":
-            len(paths),
-
-        "risk_score":
-            risk_score,
-
-        "risk_priority":
-            risk_priority,
-
-        "mitigation_ranking":
-            mitigation_results,
-
-        "recommended_intervention":
-            top_mitigation["dependency"],
-
-        "potential_exposure_reduction":
-            top_mitigation[
-                "exposure_reduction"
-            ]
-    }
+    "critical_dependencies": results,
+    "simulated_dependency": target,
+    
+}
 
     # --------------------------------
     # SAVE RESULT

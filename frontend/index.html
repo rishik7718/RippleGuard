@@ -166,8 +166,11 @@
                     Recommended Intervention
                 </h2>
 
-                <p id="recommendedIntervention">
-                    -
+                <p>
+                    Review highest-impact dependency:
+                    <strong id="recommendedIntervention">
+                        -
+                    </strong>
                 </p>
 
                 <p>
@@ -179,10 +182,28 @@
 
             </div>
 
+
+            <div class="graph-card">
+
+                <h2>
+                    Dependency Ecosystem
+                </h2>
+
+                <p>
+                    Visualize how components are connected.
+                </p>
+
+                <div id="dependencyGraph"></div>
+
+            </div>
+
+
         </section>
 
     </main>
 
+
+    <script src="https://unpkg.com/cytoscape@3.31.2/dist/cytoscape.min.js"></script>
 
     <script src="script.js"></script>
 

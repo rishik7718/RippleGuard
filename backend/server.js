@@ -1,402 +1,242 @@
 const express = require("express");
 const multer = require("multer");
-const { execFile } = require("child_process");
-const path = require("path");
 const fs = require("fs");
+const path = require("path");
+const { execFile } = require("child_process");
 
 const app = express();
-
 const PORT = 3000;
-
-
-// ============================================================
-// DIRECTORIES
-// ============================================================
-
-const uploadDirectory = path.join(
-    __dirname,
-    "uploads"
-);
-
-if (!fs.existsSync(uploadDirectory)) {
-
-    fs.mkdirSync(
-        uploadDirectory,
-        {
-            recursive: true
-        }
-    );
-
-}
-
-
-// ============================================================
-// MULTER
-// ============================================================
 
 const upload = multer({
     storage: multer.memoryStorage()
 });
 
+const uploadsDir = path.join(__dirname, "uploads");
+const analyzerDir = path.join(__dirname, "..", "analyzer");
+const analyzerPath = path.join(analyzerDir, "analyzer.py");
+const resultPath = path.join(analyzerDir, "analysis_result.json");
 
-app.use(express.json());
+if (!fs.existsSync(uploadsDir)) {
+    fs.mkdirSync(uploadsDir, { recursive: true });
+}
+
 app.use(express.static(path.join(__dirname, "..", "frontend")));
 
+function enrichResult(result) {
+    const nodes = result.graph_nodes || [];
+    const edges = result.graph_edges || [];
+    const target = result.simulated_dependency;
 
-// ============================================================
-// TEST ROUTE
-// ============================================================
+    const children = {};
 
-app.get("/api/test", (req, res) => {
-
-    res.json({
-
-        status: "success",
-
-        message:
-            "RippleGuard backend is running!"
-
+    nodes.forEach(node => {
+        children[node] = [];
     });
 
-});
+    edges.forEach(edge => {
+        if (!children[edge.source]) {
+            children[edge.source] = [];
+        }
 
+        children[edge.source].push(edge.target);
+    });
 
-// ============================================================
-// ANALYZE ROUTE
-// ============================================================
+    const affected = new Set();
+    const queue = [];
 
-app.post(
-    "/api/analyze",
-    upload.single("file"),
-    (req, res) => {
+    if (target && children[target]) {
+        children[target].forEach(child => {
+            queue.push(child);
+        });
+    }
 
-        // ----------------------------------------------------
-        // CHECK FILE
-        // ----------------------------------------------------
+    while (queue.length > 0) {
+        const current = queue.shift();
 
-        if (!req.file) {
+        if (affected.has(current)) {
+            continue;
+        }
 
-            return res.status(400).json({
+        affected.add(current);
 
-                status: "error",
-
-                message:
-                    "No file uploaded."
-
+        if (children[current]) {
+            children[current].forEach(child => {
+                if (!affected.has(child)) {
+                    queue.push(child);
+                }
             });
-
         }
+    }
 
+    result.affected_components =
+        result.affected_components ||
+        Array.from(affected);
 
-        console.log(
-            "Uploaded file:",
-            req.file.originalname
+    result.downstream_reach =
+        result.downstream_reach ??
+        affected.size;
+
+    result.propagation_paths =
+        result.propagation_paths ||
+        [];
+
+    result.total_propagation_paths =
+        result.total_propagation_paths ??
+        result.propagation_paths.length;
+
+    result.risk_score =
+        result.risk_score ??
+        (
+            result.downstream_reach * 10 +
+            result.total_propagation_paths * 10
         );
 
+    result.risk_priority =
+        result.risk_priority ||
+        (
+            result.risk_score >= 70
+                ? "HIGH"
+                : result.risk_score >= 40
+                    ? "MEDIUM"
+                    : "LOW"
+        );
 
-        // ----------------------------------------------------
-        // CREATE TEMPORARY FILE
-        // ----------------------------------------------------
+    if (!result.mitigation_ranking) {
+        result.mitigation_ranking = [];
+    }
 
-        const tempFileName =
-            Date.now() +
-            "-" +
-            req.file.originalname;
+    if (!result.recommended_intervention) {
+        if (result.mitigation_ranking.length > 0) {
+            const first = result.mitigation_ranking[0];
 
-        const tempFilePath =
-            path.join(
-                uploadDirectory,
-                tempFileName
-            );
-
-
-        try {
-
-            fs.writeFileSync(
-                tempFilePath,
-                req.file.buffer
-            );
-
+            result.recommended_intervention =
+                first.dependency ||
+                first.name ||
+                "Review highest-impact dependency";
+        } else {
+            result.recommended_intervention =
+                "Review highest-impact dependency";
         }
+    }
 
-        catch (writeError) {
+    result.potential_exposure_reduction =
+        result.potential_exposure_reduction ??
+        result.downstream_reach;
 
-            console.error(
-                "Could not save uploaded file:",
-                writeError
-            );
+    return result;
+}
 
-            return res.status(500).json({
+app.post("/api/analyze", upload.single("file"), (req, res) => {
 
-                status: "error",
+    if (!req.file) {
+        return res.status(400).json({
+            error: "No file uploaded"
+        });
+    }
 
-                message:
-                    "Could not save uploaded file."
+    const uploadedFilePath = path.join(
+        uploadsDir,
+        req.file.originalname
+    );
 
-            });
+    try {
 
-        }
-
-
-        console.log(
-            "Temporary file:",
-            tempFilePath
+        fs.writeFileSync(
+            uploadedFilePath,
+            req.file.buffer
         );
-
-
-        // ----------------------------------------------------
-        // PYTHON ANALYZER
-        // ----------------------------------------------------
-
-        const analyzerPath = path.join(
-
-            __dirname,
-
-            "..",
-
-            "analyzer",
-
-            "analyzer.py"
-
-        );
-
-
-        const resultPath = path.join(
-
-            __dirname,
-
-            "..",
-
-            "analyzer",
-
-            "analysis_result.json"
-
-        );
-
-
-        console.log(
-            "Starting Python analyzer..."
-        );
-
 
         execFile(
-
             "python",
-
             [
                 analyzerPath,
-                tempFilePath
+                uploadedFilePath
             ],
-
+            {
+                cwd: analyzerDir
+            },
             (error, stdout, stderr) => {
 
+                if (error) {
+                    console.error(stderr);
 
-                // ------------------------------------------------
-                // PRINT PYTHON OUTPUT
-                // ------------------------------------------------
+                    return res.status(500).json({
+                        error: "Analysis failed",
+                        details: stderr || error.message
+                    });
+                }
 
-                if (stdout) {
+                console.log(stdout);
+
+                if (!fs.existsSync(resultPath)) {
+                    return res.status(500).json({
+                        error: "Analysis result not found"
+                    });
+                }
+
+                try {
+
+                    let result = JSON.parse(
+                        fs.readFileSync(
+                            resultPath,
+                            "utf8"
+                        )
+                    );
+
+                    result = enrichResult(result);
 
                     console.log(
-                        "\nPython analyzer output:"
+                        "FINAL RESULT KEYS:",
+                        Object.keys(result)
                     );
 
-                    console.log(stdout);
-
-                }
-
-
-                // ------------------------------------------------
-                // PYTHON ERROR
-                // ------------------------------------------------
-
-                if (error) {
-
-                    console.error(
-                        "\nPython analyzer error:",
-                        error
+                    console.log(
+                        "DOWNSTREAM:",
+                        result.downstream_reach
                     );
 
-                    console.error(
-                        "Python stderr:",
-                        stderr
+                    console.log(
+                        "RISK:",
+                        result.risk_score
                     );
 
-
-                    // Delete temporary file
-                    fs.unlink(
-                        tempFilePath,
-                        () => { }
-                    );
-
-
-                    return res.status(500).json({
-
-                        status: "error",
-
-                        message:
-                            "Python analyzer failed.",
-
-                        details:
-                            stderr
-
+                    return res.json({
+                        success: true,
+                        analysis: result
                     });
 
-                }
-
-
-                // ------------------------------------------------
-                // CHECK JSON RESULT
-                // ------------------------------------------------
-
-                if (
-                    !fs.existsSync(resultPath)
-                ) {
-
-                    fs.unlink(
-                        tempFilePath,
-                        () => { }
-                    );
-
+                } catch (parseError) {
 
                     return res.status(500).json({
-
-                        status: "error",
-
-                        message:
-                            "Analysis completed, but analysis_result.json was not found."
-
+                        error: "Invalid analysis result",
+                        details: parseError.message
                     });
-
                 }
-
-
-                // ------------------------------------------------
-                // READ JSON RESULT
-                // ------------------------------------------------
-
-                fs.readFile(
-
-                    resultPath,
-
-                    "utf8",
-
-                    (readError, data) => {
-
-
-                        // Delete temporary uploaded file
-                        fs.unlink(
-                            tempFilePath,
-                            () => { }
-                        );
-
-
-                        if (readError) {
-
-                            console.error(
-                                "Could not read result:",
-                                readError
-                            );
-
-
-                            return res.status(500).json({
-
-                                status: "error",
-
-                                message:
-                                    "Could not read analysis result."
-
-                            });
-
-                        }
-
-
-                        // ------------------------------------------------
-                        // PARSE RESULT
-                        // ------------------------------------------------
-
-                        try {
-
-                            const result =
-                                JSON.parse(data);
-
-
-                            console.log(
-                                "Analysis completed successfully."
-                            );
-
-
-                            return res.json({
-
-                                status:
-                                    "success",
-
-                                analysis:
-                                    result
-
-                            });
-
-                        }
-
-                        catch (parseError) {
-
-                            console.error(
-                                "JSON parse error:",
-                                parseError
-                            );
-
-
-                            return res.status(500).json({
-
-                                status:
-                                    "error",
-
-                                message:
-                                    "Analysis result contains invalid JSON."
-
-                            });
-
-                        }
-
-                    }
-
-                );
-
             }
-
         );
 
+    } catch (error) {
+
+        return res.status(500).json({
+            error: "Server error",
+            details: error.message
+        });
     }
+});
 
-);
+app.get("/", (req, res) => {
+    res.sendFile(
+        path.join(
+            __dirname,
+            "..",
+            "frontend",
+            "index.html"
+        )
+    );
+});
 
-
-// ============================================================
-// START SERVER
-// ============================================================
-
-app.listen(
-
-    PORT,
-
-    () => {
-
-        console.log(
-            "==================================="
-        );
-
-        console.log(
-            "       RIPPLEGUARD BACKEND"
-        );
-
-        console.log(
-            "==================================="
-        );
-
-        console.log(
-            `Server running on http://localhost:${PORT}`
-        );
-
-    }
-
-);
+app.listen(PORT, () => {
+    console.log(
+        `RippleGuard backend running at http://localhost:${PORT}`
+    );
+});
