@@ -1,12 +1,12 @@
 # RippleGuard 🌊[RippleGuard — Model the ripple. Understand the exposure. Stop it early.]
 
-### Open Source Supply Chain Risk Analysis
+### Open Source Supply Chain Risk Analysis :
 
 RippleGuard is a dependency ecosystem risk-analysis platform that shows how a compromised open-source dependency could potentially affect downstream components.
 
 Instead of looking at dependencies individually, RippleGuard models them as a connected graph and simulates the possible "ripple effect" of a compromise.
 
-## 🚀 Features
+## 🚀 Features :
 
 - Upload a `package-lock.json` dependency file
 - Build and visualize the dependency graph
@@ -17,14 +17,14 @@ Instead of looking at dependencies individually, RippleGuard models them as a co
 - Rank dependencies by potential exposure reduction
 - Recommend high-impact intervention points
 
-## 🛠️ Tech Stack
+## 🛠️ Tech Stack :
 
 - **Frontend:** HTML, CSS, JavaScript
 - **Backend:** Node.js, Express
 - **Analysis:** Python, NetworkX
 - **Graph Visualization:** Cytoscape.js
 
-## 🔄 How It Works
+## 🔄 How It Works :
 
 ```text
 Upload Dependency File
